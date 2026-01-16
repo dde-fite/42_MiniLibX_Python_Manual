@@ -10,6 +10,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.ACTION_TOKEN }}
+      - name: Install pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
       - name: Make docs
         run: make all
       - name: Commit and push changes
