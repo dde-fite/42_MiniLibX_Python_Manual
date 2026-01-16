@@ -6,12 +6,14 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACTION_TOKEN }}
       - name: Make docs
         run: make all
-      - name: Commit files
-        run: |
-          git config --global user.name 'dde-fite's github action'
-          git config --global user.email 'dde-fite@users.noreply.github.com'
-          git commit -am "Make pandoc"
-          git push
+      - name: Commit and push changes
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: ${{ secrets.ACTION_TOKEN }}
+          commit_message: make documentation
