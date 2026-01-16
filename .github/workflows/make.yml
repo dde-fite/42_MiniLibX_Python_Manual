@@ -5,7 +5,6 @@ permissions:
 jobs:
   report:
     runs-on: ubuntu-latest
-    container: pandoc/latex
     steps:
       - name: Checkout
         uses: actions/checkout@v4
