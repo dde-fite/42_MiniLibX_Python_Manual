@@ -1,0 +1,29 @@
+<p align="center">
+    Get the PDF version of this documentation! <a href="README.pdf"><b>Download README.pdf</b></a>
+</p>
+<p align="center">
+$if(titlepage-logo)$
+<img align="center" src="$titlepage-logo$">
+$endif$
+$if(titlepage-logo)$
+    <h1 align="center">$title$</h1>
+$endif$
+</p>
+
+$if(acknowledgements)$
+<p align="center">
+    $acknowledgements$
+</p>
+
+$endif$
+## Abstract
+$if(abstract)$
+$abstract$
+
+$if(toc)$
+## Table of Contents
+$toc$
+$endif$
+
+$endif$
+$body$
