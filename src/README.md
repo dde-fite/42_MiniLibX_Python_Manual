@@ -212,6 +212,8 @@ c_void_p, c_uint, c_uint, c_char_p
     def mlx_destroy_window(mlx_ptr: int, win_ptr: int ) -> int:
 ```
 
+# ----- UNDER CONSTRUCTION -----
+```
 ## Description
 
 The **mlx_new_window** () function creates a new window on the screen,
@@ -383,6 +385,6 @@ not be used in some configurations.
 
 See source code of the MiniLibX to find out how it will call your own
 function for a specific event.
-
+```
 # Got any suggestions?
 If you find any errors or have any new ideas for improving this repository, feel free to open an Issue or Pull Request, or contact me at my email address: nora@defitero.com
