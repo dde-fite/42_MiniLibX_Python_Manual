@@ -39,18 +39,7 @@ to the native MiniLibX library.
 - [Managing windows: mlx_new_window(), mlx_clear_window,
   mlx_destroy_window](#managing-windows-mlx_new_window-mlx_clear_window-mlx_destroy_window)
   - [Synopsis](#synopsis-1)
-  - [Description](#description-1)
-  - [Return values](#return-values-1)
-- [Drawing inside windows: mlx_pixel_put(),
-  mlx_string_put()](#drawing-inside-windows-mlx_pixel_put-mlx_string_put)
-  - [Synopsis](#synopsis-2)
-  - [Description](#description-2)
-  - [Color management](#color-management)
-- [Handle events:](#handle-events)
-  - [Synopsis](#synopsis-3)
-  - [Events](#events)
-  - [Description](#description-3)
-  - [Going further with events](#going-further-with-events)
+- [—– UNDER CONSTRUCTION —–](#under-construction)
 - [Got any suggestions?](#got-any-suggestions)
 
 ## Introduction
@@ -283,176 +272,179 @@ c_void_p, c_uint, c_uint, c_char_p
     def mlx_destroy_window(mlx_ptr: int, win_ptr: int ) -> int:
 ```
 
-### Description
+## —– UNDER CONSTRUCTION —–
 
-The **mlx_new_window** () function creates a new window on the screen,
-using the *width* and *height* parameters to determine its size, and
-*title* as the text that should be displayed in the window's title bar.
-The *mlx_ptr* parameter is the connection identifier returned by
-**mlx_init** () (see the **mlx** man page). **mlx_new_window** ()
-returns a *void \** window identifier that can be used by other MiniLibX
-calls. Note that the MiniLibX can handle an arbitrary number of separate
-windows.
+    ## Description
 
-**mlx_clear_window** () and **mlx_destroy_window** () respectively clear
-(in black) and destroy the given window. They both have the same
-parameters: *mlx_ptr* is the screen connection identifier, and *win_ptr*
-is a window identifier.
+    The **mlx_new_window** () function creates a new window on the screen,
+    using the *width* and *height* parameters to determine its size, and
+    *title* as the text that should be displayed in the window\'s title bar.
+    The *mlx_ptr* parameter is the connection identifier returned by
+    **mlx_init** () (see the **mlx** man page). **mlx_new_window** ()
+    returns a *void \** window identifier that can be used by other MiniLibX
+    calls. Note that the MiniLibX can handle an arbitrary number of separate
+    windows.
 
-### Return values
+    **mlx_clear_window** () and **mlx_destroy_window** () respectively clear
+    (in black) and destroy the given window. They both have the same
+    parameters: *mlx_ptr* is the screen connection identifier, and *win_ptr*
+    is a window identifier.
 
-If **mlx_new_window()** fails to create a new window (whatever the
-reason), it will return NULL, otherwise a non-null pointer is returned
-as a window identifier. **mlx_clear_window** and **mlx_destroy_window**
-return nothing.
+    ## Return values
 
-## Drawing inside windows: mlx_pixel_put(), mlx_string_put()
+    If **mlx_new_window()** fails to create a new window (whatever the
+    reason), it will return NULL, otherwise a non-null pointer is returned
+    as a window identifier. **mlx_clear_window** and **mlx_destroy_window**
+    return nothing.
 
-### Synopsis
+    # Drawing inside windows: mlx_pixel_put(), mlx_string_put()
 
-    int
+    ## Synopsis
 
-**mlx_pixel_put** ( *void \*mlx_ptr, void \*win_ptr, unsigned int x,
-unsigned int y, unsigned int color* );
+        int
 
-    int
+    **mlx_pixel_put** ( *void \*mlx_ptr, void \*win_ptr, unsigned int x,
+    unsigned int y, unsigned int color* );
 
-**mlx_string_put** ( *void \*mlx_ptr, void \*win_ptr, unsigned int x,
-unsigned int y, unsigned int color, char \*string* );
+        int
 
-### Description
+    **mlx_string_put** ( *void \*mlx_ptr, void \*win_ptr, unsigned int x,
+    unsigned int y, unsigned int color, char \*string* );
 
-The **mlx_pixel_put** () function draws a defined pixel in the window
-*win_ptr* using the ( *x* , *y* ) coordinates, and the specified *color*
-. The origin (0,0) is the upper left corner of the window, the x and y
-axis respectively pointing right and down. The connection identifier,
-*mlx_ptr* , is needed (see the **mlx** man page).
+    ## Description
 
-Parameters for **mlx_string_put** () have the same meaning. Instead of a
-simple pixel, the specified *string* will be displayed at ( *x* , *y* ).
+    The **mlx_pixel_put** () function draws a defined pixel in the window
+    *win_ptr* using the ( *x* , *y* ) coordinates, and the specified *color*
+    . The origin (0,0) is the upper left corner of the window, the x and y
+    axis respectively pointing right and down. The connection identifier,
+    *mlx_ptr* , is needed (see the **mlx** man page).
 
-Both functions will discard any display outside the window. This makes
-**mlx_pixel_put** slow. Consider using images instead.
+    Parameters for **mlx_string_put** () have the same meaning. Instead of a
+    simple pixel, the specified *string* will be displayed at ( *x* , *y* ).
 
-### Color management
+    Both functions will discard any display outside the window. This makes
+    **mlx_pixel_put** slow. Consider using images instead.
 
-The *color* parameter has an unsigned integer type. The displayed colour
-needs to be encoded in this integer, following a defined scheme. All
-displayable colours can be split in 3 basic colours: red, green and
-blue. Three associated values, in the 0-255 range, represent how much of
-each colour is mixed up to create the original colour. The fourth byte
-represent transparency, where 0 is fully transparent and 255 opaque.
-Theses four values must be set inside the unsigned integer to display
-the right colour. The bytes of this integer are filled as shown in the
-picture below:
+    ## Color management
 
-            | B | G | R | A |   colour integer
-            +---+---+---+---+
+    The *color* parameter has an unsigned integer type. The displayed colour
+    needs to be encoded in this integer, following a defined scheme. All
+    displayable colours can be split in 3 basic colours: red, green and
+    blue. Three associated values, in the 0-255 range, represent how much of
+    each colour is mixed up to create the original colour. The fourth byte
+    represent transparency, where 0 is fully transparent and 255 opaque.
+    Theses four values must be set inside the unsigned integer to display
+    the right colour. The bytes of this integer are filled as shown in the
+    picture below:
 
-While filling the integer, make sure you avoid endian problems. Example:
-the "blue" byte will be the least significant byte inside the integer on
-a little endian machine.
+                | B | G | R | A |   colour integer
+                +---+---+---+---+
 
-## Handle events:
+    While filling the integer, make sure you avoid endian problems. Example:
+    the \"blue\" byte will be the least significant byte inside the integer
+    on a little endian machine.
 
-### Synopsis
+    # Handle events:
 
-    int
+    ## Synopsis
 
-**mlx_loop** ( *void \*mlx_ptr* );
+        int
 
-    int
+    **mlx_loop** ( *void \*mlx_ptr* );
 
-**mlx_key_hook** ( *void \*win_ptr, int (\*funct_ptr)(), void \*param*
-);
+        int
 
-    int
+    **mlx_key_hook** ( *void \*win_ptr, int (\*funct_ptr)(), void \*param*
+    );
 
-**mlx_mouse_hook** ( *void \*win_ptr, int (\*funct_ptr)(), void \*param*
-);
+        int
 
-    int
+    **mlx_mouse_hook** ( *void \*win_ptr, int (\*funct_ptr)(), void \*param*
+    );
 
-**mlx_expose_hook** ( *void \*win_ptr, int (\*funct_ptr)(), void
-\*param* );
+        int
 
-    int
+    **mlx_expose_hook** ( *void \*win_ptr, int (\*funct_ptr)(), void
+    \*param* );
 
-**mlx_loop_hook** ( *void \*mlx_ptr, int (\*funct_ptr)(), void \*param*
-);
+        int
 
-    int
+    **mlx_loop_hook** ( *void \*mlx_ptr, int (\*funct_ptr)(), void \*param*
+    );
 
-**mlx_loop_exit** ( *void \*mlx_ptr* );
+        int
 
-### Events
+    **mlx_loop_exit** ( *void \*mlx_ptr* );
 
-The graphical system is bi-directional. On one hand, the program sends
-orders to the screen to display pixels, images, and so on. On the other
-hand, it can get information from the keyboard and mouse associated to
-the screen. To do so, the program receives "events" from the keyboard or
-the mouse.
+    ## Events
 
-### Description
+    The graphical system is bi-directional. On one hand, the program sends
+    orders to the screen to display pixels, images, and so on. On the other
+    hand, it can get information from the keyboard and mouse associated to
+    the screen. To do so, the program receives \"events\" from the keyboard
+    or the mouse.
 
-To receive events, you must use **mlx_loop** (). This function never
-returns, unless **mlx_loop_exit** is called. It is an infinite loop that
-waits for an event, and then calls a user-defined function associated
-with this event. A single parameter is needed, the connection identifier
-*mlx_ptr* (see the **mlx manual).**
+    ## Description
 
-You can assign different functions to the three following events:  
-- A key is released  
-- The mouse button is pressed  
-- A part of the window should be re-drawn (this is called an "expose"
-event, and it is your program's job to handle it in the Unix/Linux X11
-environment, but at the opposite it never happens on Unix/Linux
-Wayland-Vulkan nor on MacOS).  
+    To receive events, you must use **mlx_loop** (). This function never
+    returns, unless **mlx_loop_exit** is called. It is an infinite loop that
+    waits for an event, and then calls a user-defined function associated
+    with this event. A single parameter is needed, the connection identifier
+    *mlx_ptr* (see the **mlx manual).**
 
-Each window can define a different function for the same event.
+    You can assign different functions to the three following events:\
+    - A key is released\
+    - The mouse button is pressed\
+    - A part of the window should be re-drawn (this is called an \"expose\"
+    event, and it is your program\'s job to handle it in the Unix/Linux X11
+    environment, but at the opposite it never happens on Unix/Linux
+    Wayland-Vulkan nor on MacOS).\
 
-The three functions **mlx_key_hook** (), **mlx_mouse_hook** () and
-**mlx_expose_hook** () work exactly the same way. *funct_ptr* is a
-pointer to the function you want to be called when an event occurs. This
-assignment is specific to the window defined by the *win_ptr*
-identifier. The *param* address will be passed back to your function
-every time it is called, and should be used to store the parameters it
-might need.
+    Each window can define a different function for the same event.
 
-The syntax for the **mlx_loop_hook** () function is similar to the
-previous ones, but the given function will be called when no event
-occurs, and is not bound to a specific window.
+    The three functions **mlx_key_hook** (), **mlx_mouse_hook** () and
+    **mlx_expose_hook** () work exactly the same way. *funct_ptr* is a
+    pointer to the function you want to be called when an event occurs. This
+    assignment is specific to the window defined by the *win_ptr*
+    identifier. The *param* address will be passed back to your function
+    every time it is called, and should be used to store the parameters it
+    might need.
 
-When it catches an event, the MiniLibX calls the corresponding function
-with fixed parameters:
+    The syntax for the **mlx_loop_hook** () function is similar to the
+    previous ones, but the given function will be called when no event
+    occurs, and is not bound to a specific window.
 
-      expose_hook(void *param);
-      key_hook(unsigned int keycode, void *param);
-      mouse_hook(unsigned int button, unsigned int x, unsigned int y, void *param);
-      loop_hook(void *param);
+    When it catches an event, the MiniLibX calls the corresponding function
+    with fixed parameters:
 
-These function names are arbitrary. They here are used to distinguish
-parameters according to the event. These functions are NOT part of the
-MiniLibX.
 
-*param* is the address specified in the mlx\_\*\_hook calls. This
-address is never used nor modified by the MiniLibX. On key and mouse
-events, additional information is passed: *keycode* tells you which key
-is pressed (just try to find out :) ), ( *x* , *y* ) are the coordinates
-of the mouse click in the window, and *button* tells you which mouse
-button was pressed.
+          expose_hook(void *param);
+          key_hook(unsigned int keycode, void *param);
+          mouse_hook(unsigned int button, unsigned int x, unsigned int y, void *param);
+          loop_hook(void *param);
 
-### Going further with events
+    These function names are arbitrary. They here are used to distinguish
+    parameters according to the event. These functions are NOT part of the
+    MiniLibX.
 
-The MiniLibX provides a much generic access to other available events.
-The *mlx.h* include define **mlx_hook()** in the same manner
-mlx\_\*\_hook functions work. The event and mask values will be taken
-from the historical X11 include file "X.h". Some Wayland and MacOS
-events are mapped to these values when it makes sense, and the mask may
-not be used in some configurations.
+    *param* is the address specified in the mlx\_\*\_hook calls. This
+    address is never used nor modified by the MiniLibX. On key and mouse
+    events, additional information is passed: *keycode* tells you which key
+    is pressed (just try to find out :) ), ( *x* , *y* ) are the coordinates
+    of the mouse click in the window, and *button* tells you which mouse
+    button was pressed.
 
-See source code of the MiniLibX to find out how it will call your own
-function for a specific event.
+    ## Going further with events
+
+    The MiniLibX provides a much generic access to other available events.
+    The *mlx.h* include define **mlx_hook()** in the same manner
+    mlx\_\*\_hook functions work. The event and mask values will be taken
+    from the historical X11 include file \"X.h\". Some Wayland and MacOS
+    events are mapped to these values when it makes sense, and the mask may
+    not be used in some configurations.
+
+    See source code of the MiniLibX to find out how it will call your own
+    function for a specific event.
 
 ## Got any suggestions?
 
