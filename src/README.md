@@ -193,9 +193,6 @@ First of all, you need to initialize the connection between your software and th
 
 The mlx_init function will create this connection. No parameters are needed, ant it will return a void * identifier, used for further calls to the library routines. The mlx_release function can be used at the end of the program to disconnect from the graphic system and release resources.
 
-If **mlx_init()** fails to set up the connection to the display, it will return None.
-
-
 ## Return values
 
 If **mlx_init()** set up the connection to the display correctly, it will return an **int as a pointer**; otherwise, it returns **None**.
