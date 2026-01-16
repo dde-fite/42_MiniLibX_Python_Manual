@@ -1,23 +1,17 @@
-name: Build
-
-on:
-  push:
-    branches:
-      - "**"
-  pull_request:
-
+name: Build & commit
+on: push
+permissions:
+  contents: write
 jobs:
-  make:
+  report:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install dependencies
+      - uses: actions/checkout@v3
+      - name: Make docs
+        run: make all
+      - name: Commit files
         run: |
-          sudo apt update
-          sudo apt install -y pandoc make
-
-      - name: Run make
-        run: make
+          git config --global user.name 'dde-fite's github action'
+          git config --global user.email 'dde-fite@users.noreply.github.com'
+          git commit -am "Make pandoc"
+          git push
