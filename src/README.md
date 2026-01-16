@@ -372,7 +372,7 @@ is pressed (just try to find out :) ), ( *x* , *y* ) are the coordinates
 of the mouse click in the window, and *button* tells you which mouse
 button was pressed.
 
-## GOING FURTHER WITH EVENTS
+## Going further with events
 
 The MiniLibX provides a much generic access to other available events.
 The *mlx.h* include define **mlx_hook()** in the same manner

@@ -10,10 +10,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.ACTION_TOKEN }}
-      - name: Install pandoc
+      - name: Setup Pandoc and LaTeX
+        uses: pandoc/actions/setup@v1
+        with:
+          version: latest
+      - name: Install LaTeX fonts
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc texlive texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended
+          sudo apt-get install -y texlive-fonts-extra
       - name: Make docs
         run: make all
       - name: Commit and push changes
