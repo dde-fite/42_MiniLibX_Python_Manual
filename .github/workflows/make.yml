@@ -13,7 +13,7 @@ jobs:
       - name: Install pandoc
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc
+          sudo apt-get install -y pandoc pdflatex
       - name: Make docs
         run: make all
       - name: Commit and push changes
