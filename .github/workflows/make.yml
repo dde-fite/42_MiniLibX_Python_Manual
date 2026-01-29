@@ -1,23 +1,23 @@
-name: Build & commit
-on: push
-permissions:
-  contents: write
-jobs:
-  report:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.ACTION_TOKEN }}
-      - name: Install pandoc
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y pandoc texlive texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended
-      - name: Make docs
-        run: make all
-      - name: Commit and push changes
-        uses: devops-infra/action-commit-push@master
-        with:
-          github_token: ${{ secrets.ACTION_TOKEN }}
-          commit_message: make documentation
+# name: Build & commit
+# on: push
+# permissions:
+#   contents: write
+# jobs:
+#   report:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+#         with:
+#           token: ${{ secrets.ACTION_TOKEN }}
+#       - name: Install pandoc
+#         run: |
+#           sudo apt-get update
+#           sudo apt-get install -y pandoc texlive texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended
+#       - name: Make docs
+#         run: make all
+#       - name: Commit and push changes
+#         uses: devops-infra/action-commit-push@master
+#         with:
+#           github_token: ${{ secrets.ACTION_TOKEN }}
+#           commit_message: make documentation
