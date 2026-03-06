@@ -274,9 +274,9 @@ Example: the \"blue\" byte will be the least significant byte inside the integer
 
     def mlx_put_image_to_window(mlx_ptr: int, win_ptr: int, img_ptr: int, x: int, y: int) -> int:
 
-    def mlx_xpm_file_to_image(mlx_ptr: int, filename: str, width: int, height: int) -> int: # void *
+    def mlx_xpm_file_to_image(mlx_ptr: int, filename: str) -> int: # void *
 
-    def mlx_png_file_to_image(mlx_ptr: int, filename: str, width: int, height: int) -> int: # void *
+    def mlx_png_file_to_image(mlx_ptr: int, filename: str) -> int: # void *
 
     def mlx_destroy_image(mlx_ptr: int, img_ptr: int) -> int:
 ```
